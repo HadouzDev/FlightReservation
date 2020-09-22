@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PaiementViewDlg" widgetVar="PaiementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPaiementTitle}">
+            <h:form id="PaiementViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{paiementController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPaiementLabel_id}"/>
+                        <h:outputText value="#{paiementController.selected.id}" title="#{bundle.ViewPaiementTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPaiementLabel_etatPaiement}"/>
+                        <h:outputText value="#{paiementController.selected.etatPaiement}" title="#{bundle.ViewPaiementTitle_etatPaiement}"/>
+                        <h:outputText value="#{bundle.ViewPaiementLabel_passenger}"/>
+                        <h:outputText value="#{paiementController.selected.passenger}" title="#{bundle.ViewPaiementTitle_passenger}"/>
+                        <h:outputText value="#{bundle.ViewPaiementLabel_reservation}"/>
+                        <h:outputText value="#{paiementController.selected.reservation}" title="#{bundle.ViewPaiementTitle_reservation}"/>
+                        <h:outputText value="#{bundle.ViewPaiementLabel_datePaiement}"/>
+                        <h:outputText value="#{paiementController.selected.datePaiement}" title="#{bundle.ViewPaiementTitle_datePaiement}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PaiementViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

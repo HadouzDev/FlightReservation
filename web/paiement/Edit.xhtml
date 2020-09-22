@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PaiementEditDlg" widgetVar="PaiementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPaiementTitle}">
+            <h:form id="PaiementEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{paiementController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{paiementController.selected.id}" title="#{bundle.EditPaiementTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_etatPaiement}" for="etatPaiement" />
+                        <p:inputText id="etatPaiement" value="#{paiementController.selected.etatPaiement}" title="#{bundle.EditPaiementTitle_etatPaiement}" />
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_passenger}" for="passenger" />
+                        <p:selectOneMenu id="passenger" value="#{paiementController.selected.passenger}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{passengerController.itemsAvailableSelectOne}"
+                                           var="passengerItem"
+                                           itemValue="#{passengerItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_reservation}" for="reservation" />
+                        <p:selectOneMenu id="reservation" value="#{paiementController.selected.reservation}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{reservationController.itemsAvailableSelectOne}"
+                                           var="reservationItem"
+                                           itemValue="#{reservationItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPaiementLabel_datePaiement}" for="datePaiement" />
+                        <p:inputText id="datePaiement" value="#{paiementController.selected.datePaiement}" title="#{bundle.EditPaiementTitle_datePaiement}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{paiementController.update}" value="#{bundle.Save}" update="display,:PaiementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PaiementEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PaiementEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

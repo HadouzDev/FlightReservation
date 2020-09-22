@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ticketCreateDlg" widgetVar="ticketCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateticketTitle}">
+            <h:form id="ticketCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ticketController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateticketLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ticketController.selected.id}" title="#{bundle.CreateticketTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateticketLabel_depart}" for="depart" />
+                        <p:inputText id="depart" value="#{ticketController.selected.depart}" title="#{bundle.CreateticketTitle_depart}" />
+                        <p:outputLabel value="#{bundle.CreateticketLabel_arrive}" for="arrive" />
+                        <p:inputText id="arrive" value="#{ticketController.selected.arrive}" title="#{bundle.CreateticketTitle_arrive}" />
+                        <p:outputLabel value="#{bundle.CreateticketLabel_datedepart}" for="datedepart" />
+                        <p:calendar id="datedepart" pattern="MM/dd/yyyy" value="#{ticketController.selected.datedepart}" title="#{bundle.EditticketTitle_datedepart}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateticketLabel_firstName}" for="firstName" />
+                        <p:inputText id="firstName" value="#{ticketController.selected.firstName}" title="#{bundle.CreateticketTitle_firstName}" />
+                        <p:outputLabel value="#{bundle.CreateticketLabel_lastName}" for="lastName" />
+                        <p:inputText id="lastName" value="#{ticketController.selected.lastName}" title="#{bundle.CreateticketTitle_lastName}" />
+                        <p:outputLabel value="#{bundle.CreateticketLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{ticketController.selected.prix}" title="#{bundle.CreateticketTitle_prix}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ticketController.create}" value="#{bundle.Save}" update="display,:ticketListForm:datalist,:growl" oncomplete="handleSubmit(args,'ticketCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ticketCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FlightEditDlg" widgetVar="FlightEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFlightTitle}">
+            <h:form id="FlightEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{flightController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFlightLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{flightController.selected.id}" title="#{bundle.EditFlightTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_capacite}" for="capacite" />
+                        <p:inputText id="capacite" value="#{flightController.selected.capacite}" title="#{bundle.EditFlightTitle_capacite}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_depart}" for="depart" />
+                        <p:inputText id="depart" value="#{flightController.selected.depart}" title="#{bundle.EditFlightTitle_depart}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_prix}" for="prix" />
+                        <p:inputText id="prix" value="#{flightController.selected.prix}" title="#{bundle.EditFlightTitle_prix}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_arrive}" for="arrive" />
+                        <p:inputText id="arrive" value="#{flightController.selected.arrive}" title="#{bundle.EditFlightTitle_arrive}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_datedepart}" for="datedepart" />
+                        <p:calendar id="datedepart" pattern="MM/dd/yyyy" value="#{flightController.selected.datedepart}" title="#{bundle.EditFlightTitle_datedepart}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditFlightLabel_flighttime}" for="flighttime" />
+                        <p:inputText id="flighttime" value="#{flightController.selected.flighttime}" title="#{bundle.EditFlightTitle_flighttime}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_societe}" for="societe" />
+                        <p:inputText id="societe" value="#{flightController.selected.societe}" title="#{bundle.EditFlightTitle_societe}" />
+                        <p:outputLabel value="#{bundle.EditFlightLabel_promotion}" for="promotion" />
+                        <p:selectOneMenu id="promotion" value="#{flightController.selected.promotion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{promotionController.itemsAvailableSelectOne}"
+                                           var="promotionItem"
+                                           itemValue="#{promotionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{flightController.update}" value="#{bundle.Save}" update="display,:FlightListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FlightEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FlightEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

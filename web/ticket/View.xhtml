@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ticketViewDlg" widgetVar="ticketViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewticketTitle}">
+            <h:form id="ticketViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ticketController.selected != null}">
+                        <h:outputText value="#{bundle.ViewticketLabel_id}"/>
+                        <h:outputText value="#{ticketController.selected.id}" title="#{bundle.ViewticketTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewticketLabel_depart}"/>
+                        <h:outputText value="#{ticketController.selected.depart}" title="#{bundle.ViewticketTitle_depart}"/>
+                        <h:outputText value="#{bundle.ViewticketLabel_arrive}"/>
+                        <h:outputText value="#{ticketController.selected.arrive}" title="#{bundle.ViewticketTitle_arrive}"/>
+                        <h:outputText value="#{bundle.ViewticketLabel_datedepart}"/>
+                        <h:outputText value="#{ticketController.selected.datedepart}" title="#{bundle.ViewticketTitle_datedepart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewticketLabel_firstName}"/>
+                        <h:outputText value="#{ticketController.selected.firstName}" title="#{bundle.ViewticketTitle_firstName}"/>
+                        <h:outputText value="#{bundle.ViewticketLabel_lastName}"/>
+                        <h:outputText value="#{ticketController.selected.lastName}" title="#{bundle.ViewticketTitle_lastName}"/>
+                        <h:outputText value="#{bundle.ViewticketLabel_prix}"/>
+                        <h:outputText value="#{ticketController.selected.prix}" title="#{bundle.ViewticketTitle_prix}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ticketViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

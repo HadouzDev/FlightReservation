@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FlightViewDlg" widgetVar="FlightViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFlightTitle}">
+            <h:form id="FlightViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{flightController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFlightLabel_id}"/>
+                        <h:outputText value="#{flightController.selected.id}" title="#{bundle.ViewFlightTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_capacite}"/>
+                        <h:outputText value="#{flightController.selected.capacite}" title="#{bundle.ViewFlightTitle_capacite}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_depart}"/>
+                        <h:outputText value="#{flightController.selected.depart}" title="#{bundle.ViewFlightTitle_depart}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_prix}"/>
+                        <h:outputText value="#{flightController.selected.prix}" title="#{bundle.ViewFlightTitle_prix}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_arrive}"/>
+                        <h:outputText value="#{flightController.selected.arrive}" title="#{bundle.ViewFlightTitle_arrive}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_datedepart}"/>
+                        <h:outputText value="#{flightController.selected.datedepart}" title="#{bundle.ViewFlightTitle_datedepart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewFlightLabel_flighttime}"/>
+                        <h:outputText value="#{flightController.selected.flighttime}" title="#{bundle.ViewFlightTitle_flighttime}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_societe}"/>
+                        <h:outputText value="#{flightController.selected.societe}" title="#{bundle.ViewFlightTitle_societe}"/>
+                        <h:outputText value="#{bundle.ViewFlightLabel_promotion}"/>
+                        <h:outputText value="#{flightController.selected.promotion}" title="#{bundle.ViewFlightTitle_promotion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FlightViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
